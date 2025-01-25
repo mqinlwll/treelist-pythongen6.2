@@ -171,16 +171,24 @@ def generate_html_from_json(json_file):
 
 def main():
     parser = argparse.ArgumentParser(description="Analyze remote storage and generate reports")
-    parser.add_argument("remote", help="Remote path (e.g., 'remote:bucket/path')")
+    parser.add_argument("path", help="Remote path (e.g., 'remote:bucket/path') or local JSON file")
     parser.add_argument("--output", default="output.json", help="Output JSON file name")
     parser.add_argument("--depth", type=int, default=1, help="Grouping depth for size analysis")
     parser.add_argument("--unit", default="bytes", choices=["bytes", "kb", "mb", "gb"], help="Size unit")
     parser.add_argument("--generate-tree", action="store_true", help="Generate HTML directory tree")
     args = parser.parse_args()
 
-    remote_name = args.remote.split(':')[0]
-    print(f"Fetching data from {args.remote}...")
-    files = run_rclone_lsjson(args.remote)
+    if os.path.isfile(args.path):
+        # If the path is a local file, read the JSON directly
+        print(f"Reading data from local JSON file {args.path}...")
+        with open(args.path, 'r') as f:
+            files = json.load(f)
+        remote_name = "local"
+    else:
+        # Otherwise, treat it as a remote path and run rclone lsjson
+        remote_name = args.path.split(':')[0]
+        print(f"Fetching data from {args.path}...")
+        files = run_rclone_lsjson(args.path)
 
     if args.generate_tree:
         print("Saving raw file data...")
