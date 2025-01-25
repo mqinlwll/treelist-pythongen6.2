@@ -61,19 +61,19 @@ This Python script analyzes and visualizes the contents of a remote storage syst
 ### Example Usage:
 1. **Analyze Directory Sizes**:
    ```bash
-   python script.py remote:bucket/path --depth 2 --unit mb --output sizes.json
+   python3 script.py remote:bucket/path --depth 2 --unit mb --output sizes.json
    ```
    This command groups files by directory at depth 2, converts sizes to MB, and saves the results to `sizes.json`.
 
 2. **Generate HTML Directory Tree**:
    ```bash
-   python script.py remote:bucket/path --generate-tree --output tree_data.json
+   python3 script.py remote:bucket/path --generate-tree --output tree_data.json
    ```
    This command saves raw file data to `tree_data.json` and generates an HTML directory tree in `treelist.html`.
 
 3. **Analyze Local JSON File**:
    ```bash
-   python script.py local_data.json --depth 2 --unit gb --output local_sizes.json
+   python3 script.py local_data.json --depth 2 --unit gb --output local_sizes.json
    ```
    This command reads from a local JSON file, groups files by directory at depth 2, converts sizes to GB, and saves the results to `local_sizes.json`.
 
@@ -85,4 +85,5 @@ This Python script analyzes and visualizes the contents of a remote storage syst
 - **`rclone`**: Must be installed and configured on the system if analyzing remote storage.
 - **Python Libraries**: `subprocess`, `json`, `tqdm`, `argparse`, `re`, `os`.
 
-This script is useful for analyzing and visualizing the structure and size distribution of files in remote storage systems or local JSON files, making it easier to manage and understand large datasets.
+This script is useful for analyzing and visualizing the structure and size distribution of files in remote storage systems or local JSON files, making it easier to manage and understand large datasets.	
+
