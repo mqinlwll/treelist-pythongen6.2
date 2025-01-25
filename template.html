@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tree View</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="controls">
+        <input type="text" id="search" placeholder="Search..." oninput="searchAndHighlight()">
+        <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+        <button onclick="expandAll()">Expand All</button>
+        <button onclick="collapseAll()">Collapse All</button>
+    </div>
+    <div id="tree">
+        {tree_structure}
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
